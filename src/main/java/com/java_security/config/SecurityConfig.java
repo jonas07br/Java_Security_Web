@@ -32,31 +32,10 @@ import org.springframework.web.servlet.resource.EncodedResourceResolver;
 @EnableWebSecurity
 @EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig{
-    /*
-     
-    @Bean
-	public UserDetailsService userDetailsService() {
-		InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(User.withDefaultPasswordEncoder()
-            .username("user")
-            .password("user")
-            .roles("USER")
-            .build());
-		
-        manager.createUser(User.withDefaultPasswordEncoder()
-            .username("admin")
-            .password("admin")
-            .roles("MANAGER")
-            .build());
-
-        return manager;
-	}
-        */
 
     @Autowired
     private SecurityDatabaseService securityService;
 
-    
     @Autowired
     public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(securityService).passwordEncoder(NoOpPasswordEncoder.getInstance());
